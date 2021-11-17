@@ -1,4 +1,134 @@
-# Модель прецедентів
+# Діаграма прецедентів
+
+---
+
+@startuml
+
+    actor "Administrator" as Administrator
+    actor "Editor" as Editor
+    actor "User" as User
+
+    usecase "<b>UCA_1</b>\nКерувати розділами\n та наборами даних" as UCA_1
+    usecase "<b>UCA_2</b>\nКерувати\n правами редактора" as UCA_2
+
+    Administrator -r-> UCA_2
+    Administrator -r-> UCA_1
+
+    usecase "<b>UCE_1</b>\nСтворювати та редагувати\n набори даних" as UCE_1
+    usecase "<b>UCE_2</b>\nКерувати файлами" as UCE_2
+
+    Editor -r-> UCE_2
+    Editor -r-> UCE_1
+
+    usecase "<b>UCU_1</b>\nШукати, переглядати\n та зберігати файли" as UCU_1
+    usecase "<b>UCU_2</b>\nДодавати файли\n до набору даних" as UCU_2
+
+    User -r-> UCU_2
+    User -r-> UCU_1
+    
+    
+    Administrator -d-|> Editor
+    Editor -d-|> User
+
+@enduml
+
+# Схеми використання для користувача
+
+---
+
+@startuml
+
+    actor "User" as User
+
+    usecase "<b>UCU_1</b>\nШукати, переглядати\n та зберігати файли" as UCU_1 #91FF5B
+    usecase "<b>UCU_2</b>\nДодавати файли\n до набору даних" as UCU_2 #91FF5B
+
+    User -l-> UCU_1
+    User -r-> UCU_2
+
+    usecase "<b>UCU_1.1</b>\nПошук файлу" as UCU_1.1
+    usecase "<b>UCU_1.2</b>\nПереглядати дані \nу формі таблиці,\nдіаграми чи графіку" as UCU_1.2
+    usecase "<b>UCU_1.3</b>\nЗберегти файл \nна пристрій" as UCU_1.3
+
+    UCU_1.1 ..> UCU_1 :extends
+    UCU_1.2 ..> UCU_1 :extends
+    UCU_1.3 ..> UCU_1 :extends
+
+    usecase "<b>UCU_2.1</b>\nДодати файл \nдо набору даних" as UCU_2.1
+
+    UCU_2.1 ..> UCU_2 :extends
+
+@enduml
+
+# Схеми використання для редактора
+
+---
+
+@startuml
+
+    actor "Editor" as Editor
+
+    usecase "<b>UCE_1</b>\nСтворювати та редагувати\n набори даних" as UCE_1 #00B7FF
+    usecase "<b>UCE_2</b>\nКерувати файлами" as UCE_2 #00B7FF
+
+    Editor -l-> UCE_1
+    Editor -r-> UCE_2
+
+    usecase "<b>UCE_1.1</b>\nСтворити новий набір даних" as UCE_1.1
+    usecase "<b>UCE_1.2</b>\nРедагувати набір даних" as UCE_1.2
+
+    UCE_1.1 ..> UCE_1 :extends
+    UCE_1.2 ..> UCE_1 :extends
+
+    usecase "<b>UCE_2.1</b>\nАрхівувати файл" as UCE_2.1
+    usecase "<b>UCE_2.2</b>\nВидалити файл" as UCE_2.2
+
+    UCE_2.1 ..> UCE_2 :extends
+    UCE_2.2 ..> UCE_2 :extends
+
+@enduml
+
+# Схеми використання для адміністратора
+
+---
+
+@startuml
+
+    actor "Admin" as Admin
+
+    usecase "<b>UCA_1</b>\nКерувати розділами\n та наборами даних" as UCA_1 #FF8600
+    usecase "<b>UCA_2</b>\nКерувати\n правами редактора" as UCA_2 #FF8600
+
+    Admin -l-> UCA_1
+    Admin -r-> UCA_2
+
+    usecase "<b>UCA_1.1</b>\nСтворити новий \nрозділ даних" as UCA_1.1
+    usecase "<b>UCA_1.2</b>\nВидалити \nрозділ даних" as UCA_1.2
+    usecase "<b>UCA_1.3</b>\nВидалити \nнабір даних" as UCA_1.3
+
+    UCA_1.1 ..> UCA_1 :extends
+    UCA_1.2 ..> UCA_1 :extends
+    UCA_1.3 ..> UCA_1 :extends
+
+    usecase "<b>UCA_2.1</b>\nДодати \nправа редактора" as UCA_2.1
+    usecase "<b>UCA_2.2</b>\nВидалити \nправа редактора" as UCA_2.2
+
+    UCA_2.1 ..> UCA_2 :extends
+    UCA_2.2 ..> UCA_2 :extends
+
+@enduml
+
+# Сценарії для користувача
+
+---
+
+# Сценарії для редактор
+
+---
+
+# Сценарії для адміністратора
+
+---
 
 В цьому файлі необхідно перелічити всі документи, розроблені в проекті та дати посилання на них.
 
@@ -12,12 +142,6 @@
 
 ```md
 
-<center style="
-    border-radius:4px;
-    border: 1px solid #cfd7e6;
-    box-shadow: 0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);
-    padding: 1em;"
->
 
 @startuml
 
@@ -76,17 +200,10 @@
 
 **Діаграма прецедентів**
 
-</center>
 ```
 
 яка буде відображена наступним чином
 
-<center style="
-    border-radius:4px;
-    border: 1px solid #cfd7e6;
-    box-shadow: 0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);
-    padding: 1em;"
->
 
 @startuml
 
@@ -145,5 +262,4 @@
 
 **Діаграма прецедентів**
 
-</center>
 
